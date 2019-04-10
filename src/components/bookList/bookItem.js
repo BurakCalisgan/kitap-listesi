@@ -1,27 +1,43 @@
-import React from 'react'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { deleteBook, selectBook } from '../../actions';
 
-const BookItem = ({ book }) => {
-  return (
-    <div className="card">
+class BookItem extends Component {
+  render() {
 
-      <div className="content">
-        <div className="header">
-          {book.title}
+    const { book } = this.props;
+    return (
+      <div className="card">
+
+        <div className="content">
+          <div className="header">
+            {book.title}
+          </div>
+          <div className="meta">
+            {book.author}
+          </div>
+          <div className="description">
+            {book.subtitle}
+          </div>
         </div>
-        <div className="meta">
-          {book.author}
-        </div>
-        <div className="description">
-          {book.subtitle}
+        <div className="extra content">
+          <div className="ui two buttons">
+            <div className="ui basic green button"
+              onClick= {() =>{
+                this.props.selectBook(book)
+              }}>
+              Seç
+          </div>
+            <div className="ui basic red button"
+                onClick= {()=> {
+                  this.props.deleteBook(book)
+                }}>
+              Sil
+          </div>
+          </div>
         </div>
       </div>
-      <div className="extra content">
-        <div clclassNameass="ui two buttons">
-          <div className="ui basic green button">Seç</div>
-          <div className="ui basic red button">Sil</div>
-        </div>
-      </div>
-    </div>
-  )
+    )
+  }
 }
-export default BookItem;
+export default connect(null, { selectBook, deleteBook })(BookItem);

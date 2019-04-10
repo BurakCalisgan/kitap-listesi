@@ -23,10 +23,14 @@ const selectedBookReducer = (oldSelectedBook = {}, action) => {
         //Kitap seçme işlemini yap
         return action.payload;
     } else if (action.type === 'DESELECT_BOOK') {
-        //Kitap seçmeme işlemini yap
+        //Kitap seçmeme işlemini yap yani kitap seçimini kaldır.
         return {};
+    } else if (action.type === 'DELETE_BOOK') {
+        return oldSelectedBook.isbn === action.payload.isbn ? {} : oldSelectedBook;
+
     }
     return oldSelectedBook;
+
 }
 
 

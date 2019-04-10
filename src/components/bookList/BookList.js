@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { addBook } from '../../actions';
 import BookItem from './bookItem';
 import './bookList.css';
 
@@ -42,4 +41,4 @@ const mapStateToProps = (state) => {
   };
 }
 
-export default connect(mapStateToProps, { addBook })(BookList);
+export default connect(mapStateToProps)(BookList);
